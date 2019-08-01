@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- 탭 스타일 -->
+    <style name="TapTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/mainColor</item>                        <!-- 배경 -->
+
+        <item name="android:textColorPrimary">@color/mainWhite</item>       <!-- 선택된 탭 바 -->
+        <item name="android:textColorSecondary">@color/mainGrey</item>     <!-- 선택 안 된 탭바 -->
+
+        <item name="colorAccent">@color/mainWhite</item>                    <!-- 하단 움직이는 바 색-->
+    </style>
+
+</resources>

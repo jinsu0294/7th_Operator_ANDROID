@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+            android:id="@+id/tvStoreName"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:text="가게이름"
+            android:textSize="10sp"
+            android:background="@drawable/round_maincolor"
+            android:textColor="@color/mainWhite"
+            android:gravity="center"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="148dp"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+            android:id="@+id/etUserStoreName"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/tvStoreName"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStoreName"
+            app:layout_constraintEnd_toStartOf="@+id/btnSearch"
+            app:layout_constraintStart_toEndOf="@+id/tvStoreName"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+    />
+    <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="@+id/etUserStoreName"
+            app:layout_constraintBottom_toBottomOf="@+id/etUserStoreName"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"
+    />
+
+    <TextView
+            android:id="@+id/tvPassword"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:text="비밀번호"
+            android:background="@drawable/round_maincolor"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:textColor="@color/mainWhite"
+            app:layout_constraintStart_toStartOf="@+id/tvStoreName"
+            app:layout_constraintEnd_toEndOf="@+id/tvStoreName"
+            app:layout_constraintTop_toBottomOf="@+id/tvStoreName"
+            android:layout_marginTop="50dp"
+    />
+    <EditText
+            android:id="@+id/UserPassword"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@+id/etUserStoreName"
+            app:layout_constraintEnd_toEndOf="@+id/etUserStoreName"
+            app:layout_constraintTop_toTopOf="@+id/tvPassword"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPassword"
+            android:background="@drawable/round_grey"
+    />
+
+    <TextView
+            android:id="@+id/tvNickName"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:text="별명"
+            android:gravity="center"
+            android:textSize="10sp"
+            android:textColor="@color/mainWhite"
+            android:background="@drawable/round_maincolor"
+            app:layout_constraintStart_toStartOf="@+id/tvPassword"
+            app:layout_constraintEnd_toEndOf="@+id/tvPassword"
+            android:layout_marginTop="50dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvPassword"
+    />
+    <EditText
+            android:id="@+id/etUserNIckName"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@+id/UserPassword"
+            app:layout_constraintEnd_toEndOf="@+id/UserPassword"
+            app:layout_constraintTop_toTopOf="@+id/tvNickName"
+            app:layout_constraintBottom_toBottomOf="@+id/tvNickName"
+            android:background="@drawable/round_grey"
+    />
+    <Button
+            android:id="@+id/btnCheckNickName"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:background="@drawable/round_maincolor"
+            android:text="중복확인"
+            android:textSize="10sp"
+            android:textColor="@color/mainWhite"
+            app:layout_constraintTop_toTopOf="@+id/etUserNIckName"
+            app:layout_constraintBottom_toBottomOf="@+id/etUserNIckName"
+            app:layout_constraintStart_toEndOf="@+id/etUserNIckName"
+            android:layout_marginStart="10dp"
+    />
+
+    <Button
+            android:id="@+id/btnParticipation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="참여"
+            android:textSize="10sp"
+            android:background="@drawable/round_greyfill"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="10dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+    />
+
+
+
+    
+
+
+
+</android.support.constraint.ConstraintLayout>
