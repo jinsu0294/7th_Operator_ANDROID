@@ -1,24 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+        <LinearLayout
+                android:id="@+id/linearLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <Button
+                    android:id="@+id/btn_gotoMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:layout_weight="1"
+                    android:background="@color/mainColor"
+            />
+            <Button
+                    android:layout_weight="1"
+                    android:id="@+id/btn_gotoDaeta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:background="@color/mainColor"
+            />
+        </LinearLayout>
+
+
+    <LinearLayout
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/TapTheme">
+            android:background="#f1f3f5"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            android:layout_marginTop="50dp">
 
-        <android.support.design.widget.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-    </android.support.design.widget.AppBarLayout>
+            <TextView
+                    android:id="@+id/tv_prev_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  이전  "
+                    android:textSize="15dp"/>
 
-    <android.support.v4.view.ViewPager
-            android:id="@+id/vpMainActivity"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            <TextView
+                    android:id="@+id/tv_current_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="2019  03"
+                    android:textSize="20dp"/>
 
-</android.support.design.widget.CoordinatorLayout>
+            <TextView
+                    android:id="@+id/tv_next_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  다음  "
+                    android:textSize="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="348dp"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:background="#e0e7ee"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="SUN"
+                        android:textColor="#969a9b"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="MON"
+                        android:textColor="#969a9b"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="TUE"
+                        android:textColor="#969a9b"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="WED"
+                        android:textColor="#969a9b"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="THU"
+                        android:textColor="#969a9b"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="FRI"
+                        android:textColor="#969a9b"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="SAT"
+                        android:textColor="#969a9b"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_schedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>

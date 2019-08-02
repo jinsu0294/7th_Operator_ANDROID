@@ -9,6 +9,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".DaetaActivity">
+        </activity>
         <activity android:name=".ColorTest">
         </activity>
         <activity android:name=".SigninActivity">
@@ -19,17 +21,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
-
         </activity>
-
         <activity android:name=".SelectMain">
-
         </activity>
         <activity android:name=".Participation">
-
         </activity>
         <activity android:name=".Making">
-
         </activity>
     </application>
 
