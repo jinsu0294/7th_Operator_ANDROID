@@ -11,21 +11,25 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <Button
+                android:layout_height="70dp"
+                android:background="@color/mainColor">
+
+            <ImageView
                     android:id="@+id/btn_gotoMain"
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/calendar_selected"
                     android:layout_weight="1"
-                    android:background="@color/mainColor"
+                    android:layout_gravity="center"
             />
-            <Button
-                    android:layout_weight="1"
-                    android:id="@+id/btn_gotoDaeta"
+
+            <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:background="@color/mainColor"
-            />
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/daeta"
+                    android:id="@+id/btn_gotoDaeta"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"/>
         </LinearLayout>
 
 
@@ -47,10 +51,14 @@
 
             <TextView
                     android:id="@+id/tv_prev_month"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:textColor="@color/mainWhite"
                     android:text="  이전  "
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:background="@drawable/round_maincolor"
+                    android:textStyle="bold"/>
 
             <TextView
                     android:id="@+id/tv_current_month"
@@ -59,98 +67,121 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:text="2019  03"
-                    android:textSize="20dp"/>
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+            />
 
             <TextView
                     android:id="@+id/tv_next_month"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:textColor="@color/mainWhite"
                     android:text="  다음  "
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:background="@drawable/round_maincolor"
+                    android:textStyle="bold"/>
         </LinearLayout>
 
         <LinearLayout
-                android:layout_width="348dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
-                android:orientation="vertical">
+                android:orientation="vertical"
+        >
 
             <LinearLayout
+                    android:id="@+id/Ll_day"
                     android:layout_width="350dp"
                     android:layout_height="50dp"
-                    android:background="#e0e7ee"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+            >
 
                 <TextView
+                        android:id="@+id/tv_sun"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="SUN"
-                        android:textColor="#969a9b"
-                        android:textSize="10dp"
-                        android:textStyle="bold"/>
+                        android:textColor="@color/mainWhite"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:background="@color/mainColor"
+                />
 
                 <TextView
+                        android:id="@+id/tv_mon"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="MON"
-                        android:textColor="#969a9b"
-                        android:textSize="10dp"
-                        android:textStyle="bold"/>
+                        android:textColor="@color/mainWhite"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:background="@color/mainColor"/>
 
                 <TextView
+                        android:id="@+id/tv_tue"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="TUE"
-                        android:textColor="#969a9b"
-                        android:textSize="10dp"
-                        android:textStyle="bold"/>
+                        android:textColor="@color/mainWhite"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:background="@color/mainColor"/>
 
                 <TextView
+                        android:id="@+id/tv_wed"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="WED"
-                        android:textColor="#969a9b"
-                        android:textSize="10dp"
-                        android:textStyle="bold"/>
+                        android:textColor="@color/mainWhite"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:background="@color/mainColor"/>
 
                 <TextView
+                        android:id="@+id/tv_thu"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="THU"
-                        android:textColor="#969a9b"
-                        android:textSize="10dp"
-                        android:textStyle="bold"/>
+                        android:textColor="@color/mainWhite"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:background="@color/mainColor"/>
 
                 <TextView
+                        android:id="@+id/tv_fri"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="FRI"
-                        android:textColor="#969a9b"
-                        android:textSize="10dp"
-                        android:textStyle="bold"/>
+                        android:textColor="@color/mainWhite"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:background="@color/mainColor"/>
 
                 <TextView
+                        android:id="@+id/tv_sat"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="SAT"
-                        android:textColor="#969a9b"
-                        android:textSize="10dp"
-                        android:textStyle="bold"/>
+                        android:textColor="@color/mainWhite"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:background="@color/mainColor"/>
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
