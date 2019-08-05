@@ -3,7 +3,10 @@ package likelion.smu.com.likelion_alba
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_daeta.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.btn_gotoMain
 
 class DaetaActivity : AppCompatActivity() {
 
@@ -15,7 +18,10 @@ class DaetaActivity : AppCompatActivity() {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
-    }
 
+        rvDaetaItem.layoutManager = LinearLayoutManager(this)
+        rvDaetaItem.adapter=DaetaAdapter()
+
+    }
 
 }

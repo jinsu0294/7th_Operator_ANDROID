@@ -41,6 +41,7 @@ class RecyclerViewAdapter(val mainActivity: MainActivity) : RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
         if (position % BaseCalendar.DAYS_OF_WEEK == 0) {
             holder.tv_date.setTextColor(Color.parseColor("#ff1200"))
         } else {
