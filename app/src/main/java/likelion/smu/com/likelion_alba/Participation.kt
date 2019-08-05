@@ -15,9 +15,10 @@ class Participation : AppCompatActivity() {
         btnSearch.setBackgroundResource(R.drawable.search)
 
         btnParticipation.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this,UserRoom::class.java)
+            intent.putExtra("userStore",etUserStoreName.text.toString())
+            intent.putExtra("userNickName",etUserNIckName.text.toString())
             startActivity(intent)
-            finish()
         }
 
     }
