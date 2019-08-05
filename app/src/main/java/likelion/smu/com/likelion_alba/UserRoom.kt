@@ -31,7 +31,6 @@ class UserRoom : AppCompatActivity() {
             var userStore = intent.getStringExtra("userStore")
             var userNick = intent.getStringExtra("userNickName")
             mAdapter.add("${userStore}","${userNick}")
-
         }
 
         // 가지고 있는 방이 없는 경우

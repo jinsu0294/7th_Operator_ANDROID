@@ -11,8 +11,7 @@
             android:theme="@style/AppTheme">
         <activity android:name=".DaetaActivity">
         </activity>
-        <activity android:name=".ColorTest">
-        </activity>
+
         <activity android:name=".SigninActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -31,6 +30,11 @@
         <activity android:name=".Exit">
         </activity>
         <activity android:name=".UserRoom">
+        </activity>
+        <activity android:name=".ScheduleAdd">
+
+        </activity>
+        <activity android:name=".ScheduleAddTime">
 
         </activity>
     </application>

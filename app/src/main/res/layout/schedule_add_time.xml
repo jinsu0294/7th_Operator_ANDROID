@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+>
+    <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/mainWhite"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="50dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
+    >
+        <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/underline"
+                android:textColor="@color/mainColor"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+        />
+        <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/tvDate"
+                app:layout_constraintBottom_toTopOf="@id/btnAdd"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                android:orientation="vertical"
+        >
+            <TextView
+                    android:id="@+id/tvStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="시작"
+                    android:textSize="18sp"
+                    android:textColor="@color/mainColor"
+                    android:layout_marginLeft="10dp"
+            />
+            <android.support.constraint.ConstraintLayout
+                    android:id="@+id/clStartTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/round_maincolor"
+            >
+                <EditText
+                        android:id="@+id/etStartHour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toLeftOf="@id/clStartTime"
+                        app:layout_constraintTop_toTopOf="@id/clStartTime"
+                        app:layout_constraintBottom_toBottomOf="@id/clStartTime"
+                        android:layout_marginLeft="100dp"
+                />
+                <TextView
+                        android:id="@+id/tvStartGubun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="@color/mainWhite"
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toRightOf="@id/etStartHour"
+                        app:layout_constraintTop_toTopOf="@id/etStartHour"
+                        app:layout_constraintBottom_toBottomOf="@id/etStartHour"
+                        android:layout_marginLeft="50dp"
+                />
+
+                <EditText
+                        android:id="@+id/etStartMin"
+                        android:textSize="18sp"
+                        android:textColor="@color/mainWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toRightOf="@id/tvStartGubun"
+                        app:layout_constraintTop_toTopOf="@id/tvStartGubun"
+                        app:layout_constraintBottom_toBottomOf="@id/tvStartGubun"
+                        android:layout_marginLeft="50dp"
+                />
+
+
+            </android.support.constraint.ConstraintLayout>
+            <TextView
+                    android:id="@+id/tvEnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="종료"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/mainColor"
+            />
+            <android.support.constraint.ConstraintLayout
+                    android:id="@+id/clEndTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/round_maincolor"
+            >
+
+                <EditText
+                        android:id="@+id/etEndHour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toLeftOf="@id/clEndTime"
+                        app:layout_constraintTop_toTopOf="@id/clEndTime"
+                        app:layout_constraintBottom_toBottomOf="@id/clEndTime"
+                        android:layout_marginLeft="100dp"
+                />
+                <TextView
+                        android:id="@+id/tvEndGubun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="@color/mainWhite"
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toRightOf="@id/etEndHour"
+                        app:layout_constraintTop_toTopOf="@id/etEndHour"
+                        app:layout_constraintBottom_toBottomOf="@id/etEndHour"
+                        android:layout_marginLeft="50dp"
+                />
+
+                <EditText
+                        android:id="@+id/etEndMin"
+                        android:textSize="18sp"
+                        android:textColor="@color/mainWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toRightOf="@id/tvEndGubun"
+                        app:layout_constraintTop_toTopOf="@id/tvEndGubun"
+                        app:layout_constraintBottom_toBottomOf="@id/tvEndGubun"
+                        android:layout_marginLeft="50dp"
+                />
+
+
+
+
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+
+
+        <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="저장"
+                android:background="@drawable/round_greyfill"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginBottom="10dp"
+        />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>

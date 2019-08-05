@@ -1,6 +1,7 @@
 package likelion.smu.com.likelion_alba
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -56,7 +57,8 @@ class RecyclerViewAdapter(val mainActivity: MainActivity) : RecyclerView.Adapter
         holder.tv_date.text = baseCalendar.data[position].toString()
 
         holder.tv_date.setOnClickListener {
-            //여기서 일정추가 하면됨
+            // 일정추가
+
         }
 
         if (mydate.toString() == baseCalendar.data[position].toString()&&mymonth.toString()==baseCalendar.getMonth()
@@ -80,6 +82,10 @@ class RecyclerViewAdapter(val mainActivity: MainActivity) : RecyclerView.Adapter
         holder.tv_date.setOnClickListener {
             yy.toString()+baseCalendar.calendar.time.year.toString()
             Log.d("TAG", (baseCalendar.getYear())+" / "+(baseCalendar.getMonth()))
+
+            // 스케줄 추가 액티비티로 전환
+            val intetnt = Intent(mainActivity,ScheduleAdd::class.java)
+            holder.tv_date.context.startActivity(intetnt)
         }
 
     }
