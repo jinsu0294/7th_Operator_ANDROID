@@ -28,12 +28,8 @@ class SigninActivity : AppCompatActivity() {
         // 시작 버튼
         btnStart.setOnClickListener {
             val intent = Intent(this, SelectMain::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, 101)
             finish()
         }
-
-
-
-
     }
 }

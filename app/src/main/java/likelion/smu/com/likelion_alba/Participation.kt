@@ -19,6 +19,7 @@ class Participation : AppCompatActivity() {
             intent.putExtra("userStore",etUserStoreName.text.toString())
             intent.putExtra("userNickName",etUserNIckName.text.toString())
             startActivity(intent)
+            finish()
         }
 
     }
