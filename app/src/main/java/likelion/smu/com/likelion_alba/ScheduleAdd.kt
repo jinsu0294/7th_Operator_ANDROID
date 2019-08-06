@@ -34,6 +34,7 @@ class ScheduleAdd : AppCompatActivity() {
         btnAdd.setOnClickListener {
             val intent = Intent(this,ScheduleAddTime::class.java)
             startActivity(intent)
+            finish()
         }
 
 

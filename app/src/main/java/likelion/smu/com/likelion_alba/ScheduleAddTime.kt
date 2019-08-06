@@ -23,6 +23,7 @@ class ScheduleAddTime : AppCompatActivity() {
             intent.putExtra("endHour",etEndHour.text.toString())
             intent.putExtra("endMin",etEndMin.text.toString())
             startActivity(intent)
+            finish()
         }
 
 
