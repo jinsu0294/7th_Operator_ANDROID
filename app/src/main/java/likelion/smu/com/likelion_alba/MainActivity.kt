@@ -1,11 +1,14 @@
 package likelion.smu.com.likelion_alba
 
 import android.content.Intent
+import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.GridLayoutManager
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -46,4 +49,35 @@ class MainActivity : AppCompatActivity() {
         tv_current_month.text = sdf.format(calendar.time)
     }
 
+    inner class AsyncTast: AsyncTask<String, Void, String>() {
+        var state : Int = -1 //GET_selete_month = 0
+        var response : String? = null
+
+        override fun doInBackground(vararg params: String): String? {
+            state = Integer.parseInt(params[0])
+            var client = okhttp3.OkHttpClient()
+            var url = params[1]
+            var grouppid = params[2]
+            var date = params[3]
+
+            //GET_selete_month
+            if (state == 0){
+                url.plus("{${grouppid}}&Date={${date}}")
+                response = Okhttp().GET(client,url)
+            }
+            return response
+        }
+
+        override fun onPostExecute(result: String) {
+            if(!result[0].equals("{")) { //Json구문이 넘어오지 않을 시 Toast 메세지 출력 후 종료
+                Toast.makeText(applicationContext, "네트워크 연결상태가 좋지 않습니다", Toast.LENGTH_LONG).show()
+                return
+            }
+            var json = JSONObject(result)
+            //GET_selete_month
+            if (state == 0){
+                //데이터 받아옴
+            }
+        }
+    }
 }

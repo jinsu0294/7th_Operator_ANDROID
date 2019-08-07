@@ -1,9 +1,12 @@
 package likelion.smu.com.likelion_alba
 
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import kotlinx.android.synthetic.main.main_select.*
+import org.json.JSONObject
 
 
 class SelectMain : AppCompatActivity() {
@@ -27,6 +30,4 @@ class SelectMain : AppCompatActivity() {
         }
 
     }
-
-
 }
