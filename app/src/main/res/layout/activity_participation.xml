@@ -55,7 +55,7 @@
             android:layout_marginTop="50dp"
     />
     <EditText
-            android:id="@+id/UserPassword"
+            android:id="@+id/etUserPassword"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="@+id/etUserStoreName"
@@ -63,6 +63,7 @@
             app:layout_constraintTop_toTopOf="@+id/tvPassword"
             app:layout_constraintBottom_toBottomOf="@+id/tvPassword"
             android:background="@drawable/round_grey"
+            android:inputType="textPassword"
     />
 
     <TextView
@@ -80,11 +81,11 @@
             app:layout_constraintTop_toBottomOf="@+id/tvPassword"
     />
     <EditText
-            android:id="@+id/etUserNIckName"
+            android:id="@+id/etUserNickName"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="@+id/UserPassword"
-            app:layout_constraintEnd_toEndOf="@+id/UserPassword"
+            app:layout_constraintStart_toStartOf="@+id/etUserPassword"
+            app:layout_constraintEnd_toEndOf="@+id/etUserPassword"
             app:layout_constraintTop_toTopOf="@+id/tvNickName"
             app:layout_constraintBottom_toBottomOf="@+id/tvNickName"
             android:background="@drawable/round_grey"
@@ -97,9 +98,9 @@
             android:text="중복확인"
             android:textSize="10sp"
             android:textColor="@color/mainWhite"
-            app:layout_constraintTop_toTopOf="@+id/etUserNIckName"
-            app:layout_constraintBottom_toBottomOf="@+id/etUserNIckName"
-            app:layout_constraintStart_toEndOf="@+id/etUserNIckName"
+            app:layout_constraintTop_toTopOf="@+id/etUserNickName"
+            app:layout_constraintBottom_toBottomOf="@+id/etUserNickName"
+            app:layout_constraintStart_toEndOf="@+id/etUserNickName"
             android:layout_marginStart="10dp"
     />
 
@@ -119,7 +120,7 @@
 
 
 
-    
+
 
 
 

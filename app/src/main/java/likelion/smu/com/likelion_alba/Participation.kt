@@ -24,23 +24,24 @@ class Participation : AppCompatActivity() {
 
         btnSearch.setBackgroundResource(R.drawable.search)
 
+
         btnParticipation.setOnClickListener {
-            Asynctask().execute("2",getString(R.string.in_room),groupindex.toString(),user.getmemberid(),UserPassword.text.toString(),etUserNIckName.text.toString())
+            Asynctask().execute("2",getString(R.string.in_room),groupindex.toString(),user.getmemberid(),etUserPassword.text.toString(),etUserNickName.text.toString())
 
             val intent = Intent(this,UserRoom::class.java)
-            intent.putExtra("userStore",etUserStoreName.text.toString())
-            intent.putExtra("userNickName",etUserNIckName.text.toString())
+            intent.putExtra("UserStore",etUserStoreName.text.toString())
+            intent.putExtra("UserNick",etUserNickName.text.toString())
             startActivity(intent)
         }
 
         btnSearch.setOnClickListener {
             Asynctask().execute("0",getString(R.string.search_room),etUserStoreName.text.toString())
-            //Toast.makeText(this,"검색 확인 되었습니다",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"검색 확인 되었습니다",Toast.LENGTH_SHORT).show()
         }
 
         btnCheckNickName.setOnClickListener{
-            Asynctask().execute("1",getString(R.string.create_room_check),groupindex.toString(),etUserNIckName.text.toString(),
-                    user.getmemberid(),UserPassword.text.toString())
+            Asynctask().execute("1",getString(R.string.create_room_check),groupindex.toString(),etUserNickName.text.toString(),
+                    user.getmemberid(),etUserPassword.text.toString())
         }
     }
     //1번째 파라미터 = 상태, 2번째 파라미터 = 주소

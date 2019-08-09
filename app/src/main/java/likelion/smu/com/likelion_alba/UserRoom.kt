@@ -37,7 +37,7 @@ class UserRoom : AppCompatActivity() {
         // 인텐트로 넘어온 값이 있으면(그냥 스토어 이름이 있는지 없는지로 확인했음)
         if(intent.hasExtra("userStore")){
             var userStore = intent.getStringExtra("userStore")
-            var userNick = intent.getStringExtra("userNickName")
+            var userNick = intent.getStringExtra("userNick")
             mAdapter.add("${userStore}","${userNick}")
         }
 
