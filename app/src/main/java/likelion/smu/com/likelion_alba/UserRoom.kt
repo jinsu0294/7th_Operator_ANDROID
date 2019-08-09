@@ -11,15 +11,17 @@ import android.widget.ListView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.user_room.*
 import kotlinx.android.synthetic.main.user_room_item.*
+import org.json.JSONArray
 import org.json.JSONObject
 
 class UserRoom : AppCompatActivity() {
-
+    var user = User()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.user_room)
+        user = application as User
 
         // 리사이클러뷰 어뎁터 연결
         val mAdapter = RoomRvAdapter(this)
@@ -28,6 +30,9 @@ class UserRoom : AppCompatActivity() {
         val lm = LinearLayoutManager(this)
         roomRecyclerView.layoutManager = lm
         roomRecyclerView.setHasFixedSize(true)
+
+        //리스트 값 받아옴
+        Asynctask().execute("0",getString(R.string.find_room),user.getmemberid())
 
         // 인텐트로 넘어온 값이 있으면(그냥 스토어 이름이 있는지 없는지로 확인했음)
         if(intent.hasExtra("userStore")){
@@ -53,15 +58,9 @@ class UserRoom : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
-        //방 나가기 리스너에 넣어주세요 필요한 파라미터 GroupPid, Member_id
-
-
-
     }
-    inner class AsyncTast: AsyncTask<String, Void, String>() {
-        var state : Int = -1 //GET_room_selete = 0, DELETE_room_out = 1
+    inner class Asynctask: AsyncTask<String, Void, String>() {
+        var state : Int = -1 //GET_room_selete = 0,
         var response : String? = null
 
         override fun doInBackground(vararg params: String): String? {
@@ -72,32 +71,42 @@ class UserRoom : AppCompatActivity() {
 
             //GET_room_selete
             if(state == 0){
-                url.plus("{${memberid}}")
+                url = url + memberid
                 response = Okhttp().GET(client,url)
-            }
-            //DELETE_room_out
-            else if(state == 1){
-                var groupid = params[3]
-                url.plus("{${groupid}}/{${memberid}}")
-                response = Okhttp().DELETE(client,url)
             }
 
             return response
         }
 
         override fun onPostExecute(result: String) {
-            if(!result[0].equals("{")) { //Json구문이 넘어오지 않을 시 Toast 메세지 출력 후 종료
+            if(!result.isNullOrEmpty()){
+                Log.d("User_net_test",result)
+
+            }
+
+            if(!result[0].equals('{')&&!result[0].equals('[')) { //Json구문이 넘어오지 않을 시 Toast 메세지 출력 후 종료
                 Toast.makeText(applicationContext, "네트워크 연결상태가 좋지 않습니다", Toast.LENGTH_LONG).show()
                 return
             }
 
-            var json = JSONObject(result)
+            var jsonary = JSONArray(result)
             //GET_room_selete
             if(state == 0){
                 //참여중인 방 조회 정보 넘어옴
+                //값 형태 변환 후 리스트에 넣어줘야 함
+
+                for(i in 0..jsonary.length()-1){
+                    var json = jsonary.getJSONObject(i)
+                    var json1 = json.getJSONObject("member_id")
+                    var member_id = json1.getString("member_id")
+                    var json2 = json.getJSONObject("GroupPid")
+                    var GroupPid = json2.getInt("GroupPid")
+                    var GroupName = json2.getString("GroupName")
+                    var Nickname = json.getString("Nickname")
+                    Log.d("User_net_test","${member_id} ${GroupPid} ${GroupName} ${Nickname}")
+                    //해당 정보 업로드
+                }
             }
-            //DELETE_room_out
-            else if(state == 1) Toast.makeText(applicationContext,json.getString("message"),Toast.LENGTH_SHORT).show()
         }
     }
 }

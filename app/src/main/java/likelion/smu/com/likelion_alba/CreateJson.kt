@@ -91,13 +91,17 @@ class CreateJson{
         return JSONObject.toString()
     }
 
-    fun json_res_re(SubstitutePid: Int?,SchedulePid: Int?,Responsor:String?):String?{
+    fun json_res_re(SubstitutePid: Int?,SchedulePid: Int?,GroupPid: Int?,Requestor: String?,Responsor:String?,member_id: String?):String?{
 
         var JSONObject= JSONObject()
 
         JSONObject.put("SubstitutePid",SubstitutePid)
         JSONObject.put("SchedulePid",SchedulePid)
+        JSONObject.put("GroupPid",GroupPid)
         JSONObject.put("Responsor",Responsor)
+        JSONObject.put("Requestor",Requestor)
+        JSONObject.put("memmeber_id",member_id)
+
 
         return JSONObject.toString()
     }

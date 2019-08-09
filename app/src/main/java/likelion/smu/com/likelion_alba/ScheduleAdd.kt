@@ -56,7 +56,7 @@ class ScheduleAdd : AppCompatActivity() {
 
             //GET_selete_date
             if (state == 0){
-                url.plus("{${schedulepid}}")
+                url.plus("${schedulepid}")
                 response = Okhttp().GET(client,url)
             }
             return response

@@ -39,7 +39,7 @@ class DaetaActivity : AppCompatActivity() {
 
             //GET_daeta_select
             if (state == 0){
-                url.plus("{${grouppid}}")
+                url.plus("${grouppid}")
                 response = Okhttp().GET(client,url)
             }
             return response
@@ -53,6 +53,8 @@ class DaetaActivity : AppCompatActivity() {
             var json = JSONObject(result)
             //GET_daeta_select
             if (state == 0){
+                var json = json
+
                 //데이터 받아옴
             }
         }

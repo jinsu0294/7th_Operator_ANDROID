@@ -44,15 +44,16 @@ class Making : AppCompatActivity() {
 
     }
     inner class Asynctask : AsyncTask<String, Void, String>() {
-        var state : Int = -1 //GET_search = 0, GET_check = 1, POST_create = 2
+        var state : Int = -1 //POST_req = 0, PUT_res = 1, DELET_daeta = 2
         var response : String? = null
 
         override fun doInBackground(vararg params: String): String? {
             state = Integer.parseInt(params[0])
+
             var client = okhttp3.OkHttpClient()
             var url = params[1]
 
-            //GET_search, 3 = 그룹이름
+            //POST_req, 3 = 그룹이름
             if(state == 0){
                 var groupname = params[2]
                 url = url + "{${groupname}}"
@@ -64,7 +65,7 @@ class Making : AppCompatActivity() {
                 var nickname= params[3]
                 var memberid= params[4]
                 var grouppw= params[5]
-                url = url + "{${grouppid}}/{${nickname}}/{${memberid}}/{${grouppw}}"
+                url = url + "${grouppid}/${nickname}/${memberid}/${grouppw}"
                 response = Okhttp().GET(client, url)
             }
             //POST_create, 3 = 그룹 이름, 4 = 그룹 비밀번호, 5 = 멤버 아이디, 6 = 닉네임

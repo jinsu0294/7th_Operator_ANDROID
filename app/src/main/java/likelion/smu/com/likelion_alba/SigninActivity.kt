@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_signin.*
 import okhttp3.OkHttpClient
@@ -11,7 +12,7 @@ import org.json.JSONObject
 
 class SigninActivity : AppCompatActivity() {
 
-    var IdCheck = false// 아이디중복 확인 변수
+    var IdCheck = true// 아이디중복 확인 변수
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,13 +20,15 @@ class SigninActivity : AppCompatActivity() {
 
         // 아이디 중복 체크
         btnCheckId.setOnClickListener {
-            Asynctask().execute("0","https://boiling-sands-41507.herokuapp.com/member/idcheck/",etUserId.text.toString())
+            Asynctask().execute("0",getString(R.string.sign_up_checkid),etUserId.text.toString())
         }
 
         // 시작 버튼
         btnStart.setOnClickListener {
             if(IdCheck){
-                Asynctask().execute("1","https://boiling-sands-41507.herokuapp.com/member/register",etUserId.text.toString())
+                Asynctask().execute("1",getString(R.string.sign_up),etUserId.text.toString())
+                var user : User = application as User
+                user.setmemberid(etUserId.text.toString())
                 val intent = Intent(this, SelectMain::class.java)
                 startActivity(intent)
                 //finish()
@@ -33,7 +36,6 @@ class SigninActivity : AppCompatActivity() {
             else
                 Toast.makeText(this,"중복확인이 필요합니다",Toast.LENGTH_SHORT).show()
         }
-
     }
 
     inner class Asynctask: AsyncTask<String, Void, String>() {
@@ -47,7 +49,7 @@ class SigninActivity : AppCompatActivity() {
             var id = params[2]
 
             if(state == 0){ //GET_idcheck
-                url = url + "{${id}}"
+                  url = url + "${id}"
                 response = Okhttp().GET(client, url)
             }
             else if (state == 1){ //POST_register
@@ -57,18 +59,20 @@ class SigninActivity : AppCompatActivity() {
         }
 
         override fun onPostExecute(result: String) {
+            Log.d("network1",result)
             if(!result[0].equals('{')) { //Json구문이 넘어오지 않을 시 Toast 메세지 출력 후 종료
-                Toast.makeText(applicationContext, result, Toast.LENGTH_LONG).show()
+                //Log.d("network1",result)
                 return
             }
-
+            Log.d("network1",result)
             var json = JSONObject(result)
-            if(state == 0) //GET_idcheck
-                Toast.makeText(applicationContext,json.getString("message"),Toast.LENGTH_SHORT).show()
-            if(json.getString("message").equals("아이디를 사용할 수 있습니다."))
-                IdCheck = true
-            else
-                IdCheck = false
+            if(state == 0) { //GET_idcheck
+                Toast.makeText(applicationContext, json.getString("message"), Toast.LENGTH_SHORT).show()
+                if (json.getString("message").equals("아이디를 사용할 수 있습니다."))
+                    IdCheck = true
+                else
+                    IdCheck = false
+            }
         }
     }
 }

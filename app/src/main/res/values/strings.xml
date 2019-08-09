@@ -1,22 +1,21 @@
 <resources>
     <string name="app_name">likelion_alba</string>
-    <string name="server_url">https://boiling-sands-41507.herokuapp.com</string>
-    <string name="sign_up">https://boiling-sands-41507.herokuapp.com/member/register</string>
-    <string name="sign_up_checkid">https://boiling-sands-41507.herokuapp.com/member/idcheck/</string>
-    <string name="find_room">https://boiling-sands-41507.herokuapp.com/group/signed?member_id=</string>
-    <string name="search_room">https://boiling-sands-41507.herokuapp.com/group?search=</string>
-    <string name="create_room_check">https://boiling-sands-41507.herokuapp.com/group/check/</string>
-    <string name="in_room">https://boiling-sands-41507.herokuapp.com/group/sign</string>
-    <string name="out_room">https://boiling-sands-41507.herokuapp.com/group/delete/</string>
-    <string name="room_name_check">https://boiling-sands-41507.herokuapp.com//group/namecheck/</string>
-    <string name="creat_room">https://boiling-sands-41507.herokuapp.com/group/create</string>
-    <string name="search_month">https://boiling-sands-41507.herokuapp.com/schedule?GroupPid=</string>
-    <string name="search_day">https://boiling-sands-41507.herokuapp.com/schedule/daily/</string>
-    <string name="edit_sche">https://boiling-sands-41507.herokuapp.com/schedule/daily/</string>
-    <string name="delete_sche">https://boiling-sands-41507.herokuapp.com/schedule/daily/</string>
-    <string name="add_sche">https://boiling-sands-41507.herokuapp.com/schedule/post</string>
-    <string name="req_re">https://boiling-sands-41507.herokuapp.com/schedule/substitute</string>
-    <string name="res_re">https://boiling-sands-41507.herokuapp.com/schedule/substitute/</string>
-    <string name="delete_re">https://boiling-sands-41507.herokuapp.com/schedule/substitute/</string>
-    <string name="search_re">https://boiling-sands-41507.herokuapp.com/schedule/substitute/list?GroupPid=</string>
+    <string name="server_url">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000</string>
+    <string name="sign_up">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/member/register</string>
+    <string name="sign_up_checkid">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/member/idcheck/</string>
+    <string name="find_room">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/signed?member_id=</string>
+    <string name="search_room">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group?search=</string>
+    <string name="create_room_check">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/check/</string>
+    <string name="in_room">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/sign</string>
+    <string name="out_room">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/delete/</string>
+    <string name="room_name_check">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/namecheck/</string>
+    <string name="creat_room">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/create</string>
+    <string name="search_month">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/schedule?GroupPid=</string>
+    <string name="search_day">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/schedule/daily/</string>
+    <string name="delete_sche">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/schedule/daily/</string>
+    <string name="add_sche">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/schedule/post</string>
+    <string name="req_re">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/schedule/substitute</string>
+    <string name="res_re">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/schedule/substitute/</string>
+    <string name="delete_re">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/schedule/substitute/</string>
+    <string name="search_re">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/schedule/substitute/list?GroupPid=</string>
 </resources>

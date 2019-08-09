@@ -18,7 +18,6 @@ class Okhttp{
             return response.body()?.string()!!
 
         }catch (e: IOException){
-
             return e.toString()
         }
         return null
@@ -37,7 +36,6 @@ class Okhttp{
             return response.body()?.string()!!
 
         }catch (e: IOException){
-
             return e.toString()
         }
         return null

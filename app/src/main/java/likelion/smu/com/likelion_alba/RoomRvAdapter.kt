@@ -2,6 +2,7 @@ package likelion.smu.com.likelion_alba
 
 import android.content.Context
 import android.content.Intent
+import android.os.AsyncTask
 import android.support.v7.widget.RecyclerView
 import android.text.Layout
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.user_room_item.view.*
+import org.json.JSONObject
 
 var roomList = arrayListOf<Room>()
 
@@ -31,7 +33,6 @@ class RoomRvAdapter(val context: Context): RecyclerView.Adapter<RoomRvAdapter.Ho
 
     }
 
-
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         fun bind(room: Room, context: Context, index: Int){
@@ -51,6 +52,7 @@ class RoomRvAdapter(val context: Context): RecyclerView.Adapter<RoomRvAdapter.Ho
             // 나가기
             exit.setOnClickListener {
                 roomList.removeAt(index)
+                //Asynctask().execute("0","http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/delete/","groupid","memberid")
                 val intent = Intent(context, Exit::class.java)
                 itemView.context.startActivity(intent)
             }
@@ -63,5 +65,24 @@ class RoomRvAdapter(val context: Context): RecyclerView.Adapter<RoomRvAdapter.Ho
         roomList.add(Room(store,Nick))
     }
 
+    class Asynctask: AsyncTask<String, Void, String>() {
+        var state : Int = -1 //DELETE_room_out = 0
+        var response : String? = null
+
+        override fun doInBackground(vararg params: String): String? {
+            state = Integer.parseInt(params[0])
+            var client = okhttp3.OkHttpClient()
+            var url = params[1]
+            var groupid = params[2]
+            var memberid = params[3]
+
+            //DELETE_room_out
+            if(state == 0){
+                url.plus("${groupid}/${memberid}")
+                response = Okhttp().DELETE(client,url)
+            }
+            return response
+        }
+    }
 }
 
