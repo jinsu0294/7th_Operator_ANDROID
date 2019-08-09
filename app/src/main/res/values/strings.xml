@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">likelion_alba</string>
     <string name="server_url">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000</string>
-    <string name="sign_up">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/member/register</string>
+    <string name="sign_up">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/member/register/</string>
     <string name="sign_up_checkid">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/member/idcheck/</string>
     <string name="find_room">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/signed?member_id=</string>
     <string name="search_room">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group?search=</string>

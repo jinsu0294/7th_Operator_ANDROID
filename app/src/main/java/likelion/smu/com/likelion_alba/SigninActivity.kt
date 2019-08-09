@@ -29,8 +29,7 @@ class SigninActivity : AppCompatActivity() {
                 Asynctask().execute("1",getString(R.string.sign_up),etUserId.text.toString())
                 var user : User = application as User
                 user.setmemberid(etUserId.text.toString())
-                val intent = Intent(this, SelectMain::class.java)
-                startActivity(intent)
+                startActivity(Intent(this,SelectMain::class.java))
                 //finish()
             }
             else
@@ -61,12 +60,13 @@ class SigninActivity : AppCompatActivity() {
         override fun onPostExecute(result: String) {
             Log.d("network1",result)
             if(!result[0].equals('{')) { //Json구문이 넘어오지 않을 시 Toast 메세지 출력 후 종료
-                //Log.d("network1",result)
+                Log.d("network1",result)
                 return
             }
-            Log.d("network1",result)
+
             var json = JSONObject(result)
             if(state == 0) { //GET_idcheck
+                Log.d("network1",result)
                 Toast.makeText(applicationContext, json.getString("message"), Toast.LENGTH_SHORT).show()
                 if (json.getString("message").equals("아이디를 사용할 수 있습니다."))
                     IdCheck = true

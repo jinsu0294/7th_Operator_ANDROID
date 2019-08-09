@@ -35,6 +35,8 @@ class Making : AppCompatActivity() {
         btnParticipation.setText("생성")
 
         btnParticipation.setOnClickListener {
+            var user : User = application as User
+            Asynctask().execute("2",getString(R.string.creat_room),etUserStoreName.text.toString(),UserPassword.text.toString(),user.getmemberid(),etUserNIckName.text.toString())
             val intent = Intent(this, UserRoom::class.java)
             intent.putExtra("userStore",etUserStoreName.text.toString())
             intent.putExtra("userNickName",etUserNIckName.text.toString())
@@ -56,7 +58,7 @@ class Making : AppCompatActivity() {
             //POST_req, 3 = 그룹이름
             if(state == 0){
                 var groupname = params[2]
-                url = url + "{${groupname}}"
+                url = url + "${groupname}"
                 response = Okhttp().GET(client, url)
             }
             //GET_check, 3 = 그룹 index, 4 = 닉네임, 5 = 멤버아이디, 6 = 그룹 비밀번호
@@ -80,7 +82,7 @@ class Making : AppCompatActivity() {
         }
 
         override fun onPostExecute(result: String) {
-            if(!result[0].equals("{")) { //Json구문이 넘어오지 않을 시 Toast 메세지 출력 후 종료
+            if(!result[0].equals('{')) { //Json구문이 넘어오지 않을 시 Toast 메세지 출력 후 종료
                 Toast.makeText(applicationContext, "네트워크 연결상태가 좋지 않습니다", Toast.LENGTH_LONG).show()
                 return
             }
