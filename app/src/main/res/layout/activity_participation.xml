@@ -70,7 +70,7 @@
             android:id="@+id/tvNickName"
             android:layout_width="60dp"
             android:layout_height="35dp"
-            android:text="별명"
+            android:text="닉네임"
             android:gravity="center"
             android:textSize="10sp"
             android:textColor="@color/mainWhite"

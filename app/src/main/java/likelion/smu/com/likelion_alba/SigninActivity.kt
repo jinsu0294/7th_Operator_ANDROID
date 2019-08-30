@@ -1,35 +1,60 @@
 package likelion.smu.com.likelion_alba
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
+import android.widget.EditText
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_signin.*
 import okhttp3.OkHttpClient
 import org.json.JSONObject
+import java.net.UnknownServiceException
 
 class SigninActivity : AppCompatActivity() {
 
-    var IdCheck = true// 아이디중복 확인 변수
+    var IdCheck = true// 아이디중복 확인 변수(중복일때 true, 중복이 아니면 false)
 
-    //아이디저장
+    //아이디저장하고 액티비티 전환
     fun saveId(userId:String){
-        var user: User = application as User
+        // 아이디 저장
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = pref.edit()
+        editor.putString("userId",userId).apply()
+        editor.commit()
+
+        val user = application as User
         user.setmemberid(userId)
+
+        val intent = Intent(this,UserRoom::class.java)
+        startActivity(intent)
+        finish()
     }
-    //아이디 잇는지 없는지
+
+    // 아이디 있는지 없는지 확인.
     fun idCheck(){
-        var user: User = application as User
-        var result:String? = user.getmemberid()
-        if(result != null){
-            val intent = Intent(this, UserRoom::class.java)
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        val result = pref.getString("userId","none")
+        val user = application as User
+        user.setmemberid(result)
+
+
+        Log.e("userId","${result}")
+        Log.e("USER","${user.getmemberid()}")
+
+        if(result != "none"){  // 아이디가 있으면 UserRoom으로 이동
+            // 토스트 메시지 띄우고 UserRoom으로 이동
+            Toast.makeText(this,"${result}로그인됨",Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,UserRoom::class.java)
             startActivity(intent)
             finish()
-            Toast.makeText(this,"${result}로그인",Toast.LENGTH_SHORT).show()
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
@@ -39,21 +64,30 @@ class SigninActivity : AppCompatActivity() {
 
         // 아이디 중복 체크
         btnCheckId.setOnClickListener {
-            Asynctask().execute("0",getString(R.string.sign_up_checkid),etUserId.text.toString())
+            // 입력값이 없으면(입력값이 없습니다)
+            if(etUserId.text.isEmpty()){
+                Toast.makeText(this,getString(R.string.noInput),Toast.LENGTH_SHORT).show()
+            }else{ // 입력값이 있으면
+                Asynctask().execute("0",getString(R.string.sign_up_checkid),etUserId.text.toString())
+            }
         }
 
         // 시작 버튼
         btnStart.setOnClickListener {
-            if(IdCheck){
+            // 입력값이 없으면(입력값이 없습니다)
+            if(etUserId.text.isEmpty()){
+                Toast.makeText(this,getString(R.string.noInput),Toast.LENGTH_SHORT).show()
+            }else{// 입력값이 있으면
+                // 입력값을 DB에 보냄
                 Asynctask().execute("1",getString(R.string.sign_up),etUserId.text.toString())
-                //아이디 저장
-                saveId(etUserId.text.toString())
-                val intent = Intent(this, UserRoom::class.java)
-                startActivity(intent)
-                finish()
+                // 중복이 아니면
+                if(!IdCheck){
+                    // 아이디 저장하고 액티비티 전환
+                    saveId(etUserId.text.toString())
+                }else{  //중복이 맞으면(중복입니다)
+                    Toast.makeText(this,getString(R.string.againInput), Toast.LENGTH_SHORT).show()
+                }
             }
-            else
-                Toast.makeText(this,"중복확인이 필요합니다",Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -78,19 +112,21 @@ class SigninActivity : AppCompatActivity() {
         }
 
         override fun onPostExecute(result: String) {
-            Log.d("network1",result)
+            Log.e("network1",result)
             if(!result[0].equals('{')) { //Json구문이 넘어오지 않을 시 Toast 메세지 출력 후 종료
+                Toast.makeText(applicationContext, "네트워크 연결상태가 좋지 않습니다", Toast.LENGTH_LONG).show()
                 //Log.d("network1",result)
                 return
             }
-            Log.d("network1",result)
+            Log.e("network1",result)
             var json = JSONObject(result)
-            if(state == 0) { //GET_idcheck
+            if(state == 0) { //GET_idcheck (아이디 중복확인)
                 Toast.makeText(applicationContext, json.getString("message"), Toast.LENGTH_SHORT).show()
-                if (json.getString("message").equals("아이디를 사용할 수 있습니다."))
-                    IdCheck = true
-                else
-                    IdCheck = false
+                if (json.getString("message").equals("아이디를 사용할 수 있습니다.")){
+                    IdCheck = false // 중복이 아니면
+                }else{
+                    IdCheck = true  // 중복이 맞으면
+                }
             }
         }
     }

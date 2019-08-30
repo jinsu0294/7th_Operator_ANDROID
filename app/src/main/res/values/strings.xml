@@ -3,7 +3,10 @@
     <string name="server_url">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000</string>
     <string name="sign_up">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/member/register/</string>
     <string name="sign_up_checkid">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/member/idcheck/</string>
+
+    <!-- user room 조회 -->
     <string name="find_room">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/signed?member_id=</string>
+
     <string name="search_room">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group?search=</string>
     <string name="create_room_check">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/check/</string>
     <string name="in_room">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/sign</string>
@@ -18,4 +21,7 @@
     <string name="res_re">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/schedule/substitute/</string>
     <string name="delete_re">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/schedule/substitute/</string>
     <string name="search_re">http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/schedule/substitute/list?GroupPid=</string>
+
+    <string name="noInput">*입력값이 없습니다*</string>
+    <string name="againInput">*중복입니다*</string>
 </resources>

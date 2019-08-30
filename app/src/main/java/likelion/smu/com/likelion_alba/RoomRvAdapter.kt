@@ -14,9 +14,8 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.user_room_item.view.*
 import org.json.JSONObject
 
-var roomList = arrayListOf<Room>()
 
-class RoomRvAdapter(val context: Context): RecyclerView.Adapter<RoomRvAdapter.Holder>() {
+class RoomRvAdapter(val context: Context, val roomList:ArrayList<Room>): RecyclerView.Adapter<RoomRvAdapter.Holder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -40,7 +39,7 @@ class RoomRvAdapter(val context: Context): RecyclerView.Adapter<RoomRvAdapter.Ho
             val nickname =  itemView.findViewById<TextView>(R.id.tvUserNick)
             val exit = itemView.findViewById<Button>(R.id.btnExit)
 
-            store.text =  room.storeName
+            store.text =  room.groupName
             nickname.text = room.nickName
 
             // 아이템뷰 클릭
@@ -51,18 +50,12 @@ class RoomRvAdapter(val context: Context): RecyclerView.Adapter<RoomRvAdapter.Ho
 
             // 나가기
             exit.setOnClickListener {
-                roomList.removeAt(index)
-                //Asynctask().execute("0","http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/delete/","groupid","memberid")
+                Asynctask().execute("0","http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/delete/","groupid","memberid")
                 val intent = Intent(context, Exit::class.java)
                 itemView.context.startActivity(intent)
             }
 
         }
-    }
-
-    // roomList item 추가
-    fun add(store:String, Nick:String){
-        roomList.add(Room(store,Nick))
     }
 
     class Asynctask: AsyncTask<String, Void, String>() {
@@ -84,5 +77,6 @@ class RoomRvAdapter(val context: Context): RecyclerView.Adapter<RoomRvAdapter.Ho
             return response
         }
     }
+
 }
 
