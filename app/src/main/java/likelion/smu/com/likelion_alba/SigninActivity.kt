@@ -1,19 +1,15 @@
 package likelion.smu.com.likelion_alba
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_signin.*
 import okhttp3.OkHttpClient
 import org.json.JSONObject
-import java.net.UnknownServiceException
 
 class SigninActivity : AppCompatActivity() {
 
@@ -30,7 +26,7 @@ class SigninActivity : AppCompatActivity() {
         val user = application as User
         user.setmemberid(userId)
 
-        val intent = Intent(this,UserRoom::class.java)
+        val intent = Intent(this,UserRoomActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -49,7 +45,7 @@ class SigninActivity : AppCompatActivity() {
         if(result != "none"){  // 아이디가 있으면 UserRoom으로 이동
             // 토스트 메시지 띄우고 UserRoom으로 이동
             Toast.makeText(this,"${result}로그인됨",Toast.LENGTH_SHORT).show()
-            val intent = Intent(this,UserRoom::class.java)
+            val intent = Intent(this,UserRoomActivity::class.java)
             startActivity(intent)
             finish()
         }

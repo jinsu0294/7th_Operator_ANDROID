@@ -1,4 +1,4 @@
-package likelion.smu.com.likelion_alba
+package likelion.smu.com.likelion_alba.adapter
 
 import android.content.Context
 import android.os.AsyncTask
@@ -8,6 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import likelion.smu.com.likelion_alba.CreateJson
+import likelion.smu.com.likelion_alba.Okhttp
+import likelion.smu.com.likelion_alba.R
+import likelion.smu.com.likelion_alba.ScheduleUser
 
 var userSchedule : MutableList<ScheduleUser> = mutableListOf()
 
@@ -15,7 +19,7 @@ class ScheduleAdapter(val context: Context) : RecyclerView.Adapter<ScheduleAdapt
 
 
     override fun onCreateViewHolder(context: ViewGroup, position: Int): Holder {
-        val view = LayoutInflater.from(context.context).inflate(R.layout.schedule_add_item,context,false)
+        val view = LayoutInflater.from(context.context).inflate(R.layout.item_schedule_add,context,false)
         return Holder(view)
     }
 
@@ -52,7 +56,20 @@ class ScheduleAdapter(val context: Context) : RecyclerView.Adapter<ScheduleAdapt
     }
 
     fun add(startHour:String, startMin:String, endHour:String, endMin:String, nick:String){
-        userSchedule.add(ScheduleUser(0,0,"0","0000-00-00",startHour,startMin,endHour,endMin,"0",nick))
+        userSchedule.add(
+            ScheduleUser(
+                0,
+                0,
+                "0",
+                "0000-00-00",
+                startHour,
+                startMin,
+                endHour,
+                endMin,
+                "0",
+                nick
+            )
+        )
     }
 
     class Asynctask: AsyncTask<String, Void, String>() {

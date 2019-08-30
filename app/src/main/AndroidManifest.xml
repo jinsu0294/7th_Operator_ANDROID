@@ -13,9 +13,6 @@
             android:supportsRtl="true"
             android:name=".User"
             android:theme="@style/AppTheme">
-        <activity android:name=".DaetaActivity">
-        </activity>
-
         <activity android:name=".SigninActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -23,22 +20,24 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".DaetaActivity">
+        </activity>
         <activity android:name=".MainActivity">
         </activity>
         <activity android:name=".SelectMain">
         </activity>
         <activity android:name=".Participation">
         </activity>
-        <activity android:name=".Making">
+        <activity android:name=".MakingActivity">
         </activity>
-        <activity android:name=".Exit">
+        <activity android:name=".ExitActivity">
         </activity>
-        <activity android:name=".UserRoom">
+        <activity android:name=".UserRoomActivity">
         </activity>
-        <activity android:name=".ScheduleAdd">
+        <activity android:name=".ScheduleAddActivity">
 
         </activity>
-        <activity android:name=".ScheduleAddTime">
+        <activity android:name=".ScheduleAddTimeActivity">
 
         </activity>
     </application>

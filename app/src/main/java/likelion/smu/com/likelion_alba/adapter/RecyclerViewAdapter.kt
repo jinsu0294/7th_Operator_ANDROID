@@ -1,6 +1,5 @@
-package likelion.smu.com.likelion_alba
+package likelion.smu.com.likelion_alba.adapter
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.AsyncTask
@@ -9,7 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 
 import android.view.ViewGroup
-import android.widget.Toast
+import likelion.smu.com.likelion_alba.*
 import org.json.JSONArray
 
 import java.util.*
@@ -53,7 +52,7 @@ class RecyclerViewAdapter(val mainActivity: MainActivity) : RecyclerView.Adapter
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_schedule, parent, false)
         return MyViewHolder(view)
     }
@@ -99,7 +98,7 @@ class RecyclerViewAdapter(val mainActivity: MainActivity) : RecyclerView.Adapter
             Log.d("TAG", (baseCalendar.getYear())+" / "+(baseCalendar.getMonth()))
 
             // 스케줄 추가 액티비티로 전환
-            val intetnt = Intent(mainActivity,ScheduleAdd::class.java)
+            val intetnt = Intent(mainActivity, ScheduleAddActivity::class.java)
             holder.tv_date.context.startActivity(intetnt)
             Log.d("TAG",mdate)
         }

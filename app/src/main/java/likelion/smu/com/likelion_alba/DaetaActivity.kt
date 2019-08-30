@@ -7,8 +7,8 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_daeta.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.btn_gotoMain
+import likelion.smu.com.likelion_alba.adapter.DaetaAdapter
 import org.json.JSONObject
 
 class DaetaActivity : AppCompatActivity() {
@@ -23,7 +23,7 @@ class DaetaActivity : AppCompatActivity() {
         }
 
         rvDaetaItem.layoutManager = LinearLayoutManager(this)
-        rvDaetaItem.adapter=DaetaAdapter()
+        rvDaetaItem.adapter= DaetaAdapter()
 
     }
 

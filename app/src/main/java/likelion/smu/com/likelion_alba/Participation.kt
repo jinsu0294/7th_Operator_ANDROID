@@ -3,12 +3,10 @@ package likelion.smu.com.likelion_alba
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
-import android.support.annotation.IntegerRes
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_participation.*
-import kotlinx.android.synthetic.main.activity_signin.*
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -53,7 +51,7 @@ class Participation : AppCompatActivity() {
                 etUserNickName.text.toString()
             )
 
-            val intent = Intent(this, UserRoom::class.java)
+            val intent = Intent(this, UserRoomActivity::class.java)
             intent.putExtra("UserStore", etUserStoreName.text.toString())
             intent.putExtra("UserNick", etUserNickName.text.toString())
             startActivity(intent)

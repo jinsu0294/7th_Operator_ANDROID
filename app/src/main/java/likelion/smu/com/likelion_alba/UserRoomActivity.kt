@@ -1,29 +1,25 @@
 package likelion.smu.com.likelion_alba
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
-import android.widget.ListView
 import android.widget.Toast
-import kotlinx.android.synthetic.main.user_room.*
-import kotlinx.android.synthetic.main.user_room_item.*
+import kotlinx.android.synthetic.main.activity_user_room.*
+import likelion.smu.com.likelion_alba.adapter.RoomRvAdapter
 import org.json.JSONArray
-import org.json.JSONObject
 
-class UserRoom : AppCompatActivity() {
+class UserRoomActivity : AppCompatActivity() {
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.user_room)
+        setContentView(R.layout.activity_user_room)
 
         val user = application as User
 
@@ -34,15 +30,21 @@ class UserRoom : AppCompatActivity() {
         btnAdd.setOnClickListener {
             val intent = Intent(this,SelectMain::class.java)
             startActivity(intent)
-            finish()
         }
 
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(resultCode){
+            Activity.RESULT_OK -> finish()
+        }
+    }
+
     // execute()로 실행됨
     inner class Asynctask: AsyncTask<String, Void, String>() {
-        var state : Int = -1 //GET_room_selete = 0,
+        var state : Int = -1 // GET_room_selete = 0
         var response : String? = null
 
         // 전달된 값 사용하여 response 리턴함
@@ -65,8 +67,9 @@ class UserRoom : AppCompatActivity() {
         // 이를 통해 스레드 작업 끝났을 때 동작을 구현함
         override fun onPostExecute(result: String) {
 
+            // result가 정상적으로 넘어왔을 경우 로그
             if(!result.isNullOrEmpty()){
-                Log.d("User_net_test",result)
+                Log.e("GET_room",result)
             }
 
             //Json구문이 넘어오지 않을 시 Toast 메세지 출력 후 종료
@@ -76,13 +79,13 @@ class UserRoom : AppCompatActivity() {
             }
 
             var jsonary = JSONArray(result)
-            var room = arrayListOf<Room>()
-            val mAdapter = RoomRvAdapter(applicationContext, room)
+            var roomList = arrayListOf<Room>()
 
-            roomRecyclerView.adapter = mAdapter
+//            val mAdapter = RoomRvAdapter(applicationContext, roomList)
+//            roomRecyclerView.adapter = mAdapter
 
 
-            // 사용자방 조회하여 추가합니다.
+            // 사용자방 조회하여 roomList 에 추가함
             for(i in 0..jsonary.length()-1){
                 var json = jsonary.getJSONObject(i)
                 var json1 = json.getJSONObject("member_id")
@@ -93,15 +96,14 @@ class UserRoom : AppCompatActivity() {
                 var Nickname = json.getString("Nickname")
 
                 Log.e("User_net_test","${member_id} ${GroupPid} ${GroupName} ${Nickname}")
-                room.add(Room(GroupPid, GroupName, Nickname))
+                roomList.add(Room(GroupPid, GroupName, Nickname))
 
-//                Log.e("User의 rooms", "${i} -> ${user.rooms[i].groupPid}")
             }
 
             //GET_room_selete 방조회
             if(state == 0){
                 // 리사이클러뷰 adapter 연결
-                val mAdapter = RoomRvAdapter(applicationContext, room)
+                val mAdapter = RoomRvAdapter(applicationContext, roomList)
                 roomRecyclerView.adapter = mAdapter
 
                 val lm = LinearLayoutManager(applicationContext)

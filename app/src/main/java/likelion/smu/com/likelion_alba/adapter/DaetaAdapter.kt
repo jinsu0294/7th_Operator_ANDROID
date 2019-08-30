@@ -1,24 +1,25 @@
-package likelion.smu.com.likelion_alba
+package likelion.smu.com.likelion_alba.adapter
 
-import android.content.Context
 import android.os.AsyncTask
 import android.support.v7.widget.RecyclerView
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
-import kotlinx.android.synthetic.main.daeta_item.view.*
-import org.json.JSONObject
+import kotlinx.android.synthetic.main.item_daeta.view.*
+import likelion.smu.com.likelion_alba.CreateJson
+import likelion.smu.com.likelion_alba.DaetaSchedule
+import likelion.smu.com.likelion_alba.Okhttp
+import likelion.smu.com.likelion_alba.R
 
 class DaetaAdapter : RecyclerView.Adapter<DaetaAdapter.Holder>(){
-    val daetaSchedule : MutableList<DaetaSchedule> = mutableListOf(DaetaSchedule("123","123","123",
-        "123","123","123","123"))
+    val daetaSchedule : MutableList<DaetaSchedule> = mutableListOf(
+        DaetaSchedule(
+            "123", "123", "123",
+            "123", "123", "123", "123"
+        )
+    )
     override fun onCreateViewHolder(parant: ViewGroup, p1: Int): Holder {
-        val view = LayoutInflater.from(parant.context).inflate(R.layout.daeta_item,parant,false)
+        val view = LayoutInflater.from(parant.context).inflate(R.layout.item_daeta,parant,false)
         return Holder(view)
     }
 
@@ -70,7 +71,8 @@ class DaetaAdapter : RecyclerView.Adapter<DaetaAdapter.Holder>(){
                 var requestor=params[3]
                 var grouppid = Integer.getInteger(params[4])
 
-                response = Okhttp().POST(client,url,CreateJson().json_req_re(schedulpid,requestor,grouppid))
+                response = Okhttp().POST(client,url,
+                    CreateJson().json_req_re(schedulpid,requestor,grouppid))
             }
             //PUT_res = 1
             else if(state == 1) {
@@ -83,7 +85,8 @@ class DaetaAdapter : RecyclerView.Adapter<DaetaAdapter.Holder>(){
 
                 url = url + "${schedulepid}"
 
-                response = Okhttp().PUT(client,url,CreateJson().json_res_re(substitutepid,schedulepid,grouppid,requestor,responsor,member_id))
+                response = Okhttp().PUT(client,url,
+                    CreateJson().json_res_re(substitutepid,schedulepid,grouppid,requestor,responsor,member_id))
             }
             //DELETE_re = 2
             else if(state == 2){

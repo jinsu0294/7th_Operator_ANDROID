@@ -1,25 +1,22 @@
-package likelion.smu.com.likelion_alba
+package likelion.smu.com.likelion_alba.adapter
 
 import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.support.v7.widget.RecyclerView
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import kotlinx.android.synthetic.main.user_room_item.view.*
-import org.json.JSONObject
+import likelion.smu.com.likelion_alba.*
 
 
 class RoomRvAdapter(val context: Context, val roomList:ArrayList<Room>): RecyclerView.Adapter<RoomRvAdapter.Holder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = LayoutInflater.from(context).inflate(R.layout.user_room_item,parent,false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_user_room,parent,false)
         return Holder(view)
     }
 
@@ -44,14 +41,14 @@ class RoomRvAdapter(val context: Context, val roomList:ArrayList<Room>): Recycle
 
             // 아이템뷰 클릭
             itemView.setOnClickListener {
-                val intent = Intent(context,MainActivity::class.java)
+                val intent = Intent(context, MainActivity::class.java)
                 itemView.context.startActivity(intent)
             }
 
             // 나가기
             exit.setOnClickListener {
                 Asynctask().execute("0","http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/delete/","groupid","memberid")
-                val intent = Intent(context, Exit::class.java)
+                val intent = Intent(context, ExitActivity::class.java)
                 itemView.context.startActivity(intent)
             }
 

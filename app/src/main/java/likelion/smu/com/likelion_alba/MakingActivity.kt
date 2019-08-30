@@ -1,6 +1,6 @@
 package likelion.smu.com.likelion_alba
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.AsyncTask
@@ -10,16 +10,13 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.RadioButton
-import android.widget.TextView
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_signin.*
 import kotlinx.android.synthetic.main.activity_participation.*
 import okhttp3.OkHttpClient
 import org.json.JSONObject
 
 
-class Making : AppCompatActivity() {
+class MakingActivity : AppCompatActivity() {
 
     var storeCheck = true // 가게이름 중복확인 변수(중복이 맞으면 true, 중복이 아니면 false)
 
@@ -75,10 +72,11 @@ class Making : AppCompatActivity() {
                 }else{  //가게이름이 중복이 아닐 때
                     var user : User = application as User
                    Asynctask().execute("1",getString(R.string.creat_room),etUserStoreName.text.toString(),etUserPassword.text.toString(),user.getmemberid(),etUserNickName.text.toString())
-                    val intent = Intent(this,UserRoom::class.java)
+                    val intent = Intent(this,UserRoomActivity::class.java)
                     intent.putExtra("userStore",etUserStoreName.text.toString())
                     intent.putExtra("userNick",etUserNickName.text.toString())
                     startActivity(intent)
+                    setResult(Activity.RESULT_OK)
                     finish()
                 }
             }
