@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import kotlinx.android.synthetic.main.item_user_room.view.*
 import likelion.smu.com.likelion_alba.*
 
 
@@ -39,39 +40,21 @@ class RoomRvAdapter(val context: Context, val roomList:ArrayList<Room>): Recycle
             store.text =  room.groupName
             nickname.text = room.nickName
 
-            // 아이템뷰 클릭
+            // 아이템뷰 클릭 리스너
             itemView.setOnClickListener {
                 val intent = Intent(context, MainActivity::class.java)
                 itemView.context.startActivity(intent)
             }
 
-            // 나가기
+            // 나가기 버튼 리스터
             exit.setOnClickListener {
-                Asynctask().execute("0","http://ec2-54-180-32-25.ap-northeast-2.compute.amazonaws.com:8000/group/delete/","groupid","memberid")
+                val storeName = itemView.tvUserStore.text.toString()
                 val intent = Intent(context, ExitActivity::class.java)
+                // 클릭한 아이템의 스토어네임을 인텐트로 넘겨줌
+                intent.putExtra("storeName",storeName)
                 itemView.context.startActivity(intent)
             }
 
-        }
-    }
-
-    class Asynctask: AsyncTask<String, Void, String>() {
-        var state : Int = -1 //DELETE_room_out = 0
-        var response : String? = null
-
-        override fun doInBackground(vararg params: String): String? {
-            state = Integer.parseInt(params[0])
-            var client = okhttp3.OkHttpClient()
-            var url = params[1]
-            var groupid = params[2]
-            var memberid = params[3]
-
-            //DELETE_room_out
-            if(state == 0){
-                url.plus("${groupid}/${memberid}")
-                response = Okhttp().DELETE(client,url)
-            }
-            return response
         }
     }
 

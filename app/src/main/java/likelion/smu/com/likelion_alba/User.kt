@@ -6,19 +6,11 @@ import android.provider.ContactsContract
 
 class User : Application() {
     var memberid : String? = null
-
-    var rooms = ArrayList<Room>()
+    var groupPid: Int? = null
 
     fun setmemberid(memberid : String){this.memberid = memberid}
     fun getmemberid(): String?{return memberid}
 
-    // 방 추가
-    fun addRooms(GroupPid:Int, GroupName:String, NickName:String){
-        rooms.add(Room(GroupPid, GroupName, NickName))
-    }
-//    fun loadRooms():Int{
-//        return rooms.size
-//    }
-//
-
+    fun setGroupPid(groupPid: Int){this.groupPid = groupPid}
+    fun getPid():Int? { return groupPid}
 }

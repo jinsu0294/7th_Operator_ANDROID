@@ -47,6 +47,7 @@ class Okhttp{
         try {
             var request= Request.Builder()
                 .url(url!!)
+                .delete()
                 .build()
             response = client!!.newCall(request).execute()
             return response.body()?.string()!!

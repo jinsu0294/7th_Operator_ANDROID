@@ -1,5 +1,6 @@
 package likelion.smu.com.likelion_alba
 
+import android.app.Activity
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
@@ -11,7 +12,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 
-class Participation : AppCompatActivity() {
+class ParticipationActivity : AppCompatActivity() {
     var groupindex: Int = -1
     var user = User()
     var json = JSONObject()
@@ -58,6 +59,13 @@ class Participation : AppCompatActivity() {
 
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            1000 -> setResult(Activity.RESULT_OK)
+        }
     }
 
     //1번째 파라미터 = 상태, 2번째 파라미터 = 주소

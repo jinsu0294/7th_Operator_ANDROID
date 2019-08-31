@@ -17,6 +17,7 @@ class UserRoomActivity : AppCompatActivity() {
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_room)
@@ -26,9 +27,10 @@ class UserRoomActivity : AppCompatActivity() {
         // 방 조회
         Asynctask().execute("0",getString(R.string.find_room),user.getmemberid())
 
-        // 추가
+        // 추가 버튼 리스너
         btnAdd.setOnClickListener {
-            val intent = Intent(this,SelectMain::class.java)
+            // SelectMainActivity 액티비티로 이동
+            val intent = Intent(this,SelectMainActivity::class.java)
             startActivity(intent)
         }
 
@@ -37,11 +39,11 @@ class UserRoomActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         when(resultCode){
             Activity.RESULT_OK -> finish()
         }
     }
-
     // execute()로 실행됨
     inner class Asynctask: AsyncTask<String, Void, String>() {
         var state : Int = -1 // GET_room_selete = 0
@@ -122,4 +124,5 @@ class UserRoomActivity : AppCompatActivity() {
             }
         }
     }
+
 }

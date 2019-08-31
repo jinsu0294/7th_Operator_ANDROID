@@ -30,18 +30,11 @@ class MakingActivity : AppCompatActivity() {
     }
 
 
-    // 사용자 아이디 있을 경우 memberid값 받아와서 return
-    //fun checkUserId():String?{
-
-//       var user:User = application as User
-//        var result:String? = user.getmemberid()
-
-//        return result
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_participation)
+
+        Log.e(" making activity init","!!yes!!")
 
         //닉네임 중복확인 버튼 없앰
         btnCheckNickName.visibility = View.GONE
@@ -71,18 +64,33 @@ class MakingActivity : AppCompatActivity() {
                     Toast.makeText(this,getString(R.string.againInput),Toast.LENGTH_SHORT).show()
                 }else{  //가게이름이 중복이 아닐 때
                     var user : User = application as User
-                   Asynctask().execute("1",getString(R.string.creat_room),etUserStoreName.text.toString(),etUserPassword.text.toString(),user.getmemberid(),etUserNickName.text.toString())
-                    val intent = Intent(this,UserRoomActivity::class.java)
-                    intent.putExtra("userStore",etUserStoreName.text.toString())
-                    intent.putExtra("userNick",etUserNickName.text.toString())
+                    val storeName = etUserStoreName.text.toString()
+                    val pw = etUserPassword.text.toString()
+                    val id = user.getmemberid()
+                    val nickname = etUserNickName.text.toString()
+
+                    Asynctask().execute("1",getString(R.string.creat_room),storeName,pw,id,nickname)
+
+                    val intent = Intent(this, UserRoomActivity::class.java)
+                    setResult(Activity.RESULT_OK, intent)
                     startActivity(intent)
-                    setResult(Activity.RESULT_OK)
                     finish()
+
+//                    // 액티비티 전환 후 해당 액티비티 finish()
+//                    // activity_finish(true)를 같이 넘김
+//                    // 쌓이는 UserRoomActivity finish() 하기 위함
+//                    val intent = Intent(this, UserRoomActivity::class.java)
+//                    intent.putExtra("activity_finish",true)
+//                    startActivity(intent)
+//                    finish()
                 }
             }
+
         }
 
     }
+
+
     inner class Asynctask : AsyncTask<String, Void, String>() {
         var state : Int = -1 //GET_search = 0, GET_check = 1, POST_create = 2
         var response : String? = null
@@ -126,9 +134,8 @@ class MakingActivity : AppCompatActivity() {
                 }
                 Log.e("123", ":::GET_search")
                 Log.e("123", ":::json$json")
-                //json.getInt("GroupPid") //방 검색 시 방 인덱스 받아옴, 전역 변수에 넣어주어야 한다
-                //json.getString("GroupName") //방 검색 시 방 이름 받아옴, 전역 변수에 넣어주어야 한다
             }
+
             //POST_participation(방만들기)
             else if (state == 1){
                 Log.e("123", ":::POST_participation")
