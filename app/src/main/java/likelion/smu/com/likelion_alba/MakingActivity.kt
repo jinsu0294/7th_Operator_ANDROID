@@ -38,6 +38,8 @@ class MakingActivity : AppCompatActivity() {
 
         //닉네임 중복확인 버튼 없앰
         btnCheckNickName.visibility = View.GONE
+        // 스피너 없앰
+        spSpinner.visibility = View.GONE
 
         // 버튼 설정
         setup(btnSearch)

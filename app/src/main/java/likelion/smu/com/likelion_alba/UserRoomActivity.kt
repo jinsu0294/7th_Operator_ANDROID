@@ -23,7 +23,7 @@ class UserRoomActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_room)
 
         val user = application as User
-
+        tvTopBar.setText("${user.memberid}님의 방입니다.")
         // 방 조회
         Asynctask().execute("0",getString(R.string.find_room),user.getmemberid())
 

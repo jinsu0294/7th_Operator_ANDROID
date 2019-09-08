@@ -28,6 +28,10 @@
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:background="@drawable/round_grey"
+            android:paddingLeft="10dp"
+            android:textSize="10sp"
+            android:maxLength="10"
+            android:hint="최대10글자"
     />
     <Button
             android:id="@+id/btnSearch"
@@ -38,7 +42,20 @@
             app:layout_constraintBottom_toBottomOf="@+id/etUserStoreName"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="20dp"
+            android:background="@drawable/round_maincolor"
+            android:textColor="@color/mainWhite"
     />
+    <Spinner
+            android:id="@+id/spSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/mainColor"
+            app:layout_constraintTop_toBottomOf="@id/etUserStoreName"
+            app:layout_constraintRight_toRightOf="@id/etUserStoreName"
+            android:layout_marginTop="3dp"
+    >
+
+    </Spinner>
 
     <TextView
             android:id="@+id/tvPassword"
@@ -64,6 +81,12 @@
             app:layout_constraintBottom_toBottomOf="@+id/tvPassword"
             android:background="@drawable/round_grey"
             android:inputType="textPassword"
+            android:paddingLeft="10dp"
+            android:textSize="10sp"
+            android:hint="최대10글자"
+            android:maxLength="10"
+
+
     />
 
     <TextView
@@ -89,6 +112,11 @@
             app:layout_constraintTop_toTopOf="@+id/tvNickName"
             app:layout_constraintBottom_toBottomOf="@+id/tvNickName"
             android:background="@drawable/round_grey"
+            android:paddingLeft="10dp"
+            android:textSize="10sp"
+            android:hint="최대10글자"
+            android:maxLength="10"
+
     />
     <Button
             android:id="@+id/btnCheckNickName"

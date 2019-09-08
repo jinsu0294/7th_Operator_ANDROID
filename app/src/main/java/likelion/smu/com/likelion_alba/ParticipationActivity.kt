@@ -6,8 +6,12 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_participation.*
+import kotlinx.android.synthetic.main.item_schedule_add.view.*
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -19,18 +23,31 @@ class ParticipationActivity : AppCompatActivity() {
 
     var response: String? = null
 
+    var searchRoom = arrayListOf<SearchRoom>()
+
+    var search = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_participation)
-        user = application as User
 
-        btnSearch.setBackgroundResource(R.drawable.search)
+        btnSearch.text = "검색"
+        spSpinner.visibility = View.VISIBLE
 
-        // 방검색 버튼 리스너
+        // 검색 버튼 리스너
         btnSearch.setOnClickListener {
-            Asynctask().execute("0", getString(R.string.search_room), etUserStoreName.text.toString())
-            Toast.makeText(this, "검색 확인 되었습니다", Toast.LENGTH_SHORT).show()
-            Log.e("vresponse", "123"+response)
+            if(etUserStoreName.text.isEmpty()){
+                Toast.makeText(this,"입력값이 없습니다.",Toast.LENGTH_SHORT).show()
+            }else{
+                if(search == -1){
+                    search = 1
+                }else{
+                    searchRoom.removeAll(searchRoom)
+                    search = -1
+                }
+                Asynctask().execute("0", getString(R.string.search_room), etUserStoreName.text.toString())
+                Log.e("vresponse", "123"+response)
+            }
         }
 
         // 닉네임 중복 버튼 리스너
@@ -59,6 +76,22 @@ class ParticipationActivity : AppCompatActivity() {
 
         }
 
+        spSpinner.onItemSelectedListener = object: AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener {
+            override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                etUserStoreName.setText(searchRoom[position].groupName)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -80,11 +113,10 @@ class ParticipationActivity : AppCompatActivity() {
             if (state == 0) {
                 var groupname = params[2]
                 url += "${groupname}"
-                Log.e("123123","123123123:::"+url)
-                Log.e("123123","123123123:::"+url.toString())
                 json.optInt("GroupPid",999) //방 검색 시 방 인덱스 받아옴, 전역 변수에 넣어주어야 한다
                 json.optString("GroupName","text on no value") //방 검색 시 방 이름 받아옴, 전역 변수에 넣어주어야 한다
                 response = Okhttp().GET(client, url)
+                Log.e("SEARCHROOM RESPONSE",response.toString())
             }
 
             //GET_check(닉네임 중복), 3 = 그룹 index, 4 = 닉네임, 5 = 멤버아이디, 6 = 그룹 비밀번호
@@ -124,12 +156,30 @@ class ParticipationActivity : AppCompatActivity() {
             if (state == 0) {
                 var jsonary = JSONArray(result)
                 Log.e("123", ":::GET_search")
-                for (i in 0..jsonary.length() - 1) {
-                    var json = JSONObject(jsonary.get(i).toString())
-                    Log.e("123", ":::state")
-                    groupindex = json.getInt("GroupPid")
-
+                if(response == "[]"){
+                    var choice = arrayListOf("결과 없음")
+                    val sAdapter = ArrayAdapter(applicationContext,android.R.layout.simple_spinner_dropdown_item,choice)
+                    spSpinner.adapter = sAdapter
                 }
+                else{
+                    for (i in 0..jsonary.length() - 1) {
+                        var json = jsonary.getJSONObject(i)
+                        var groupPid = json.getInt("GroupPid")
+                        var groupName = json.getString("GroupName")
+                        Log.e("Search_Room","${groupPid}, ${groupName}")
+                        searchRoom.add(SearchRoom(groupPid,groupName))
+                        Log.e("SearchRoomSize",searchRoom.size.toString())
+                    }
+
+                    var choice = arrayListOf<String>()
+                    for(i in 0..searchRoom.size-1){
+                        choice.add(i,searchRoom[i].groupName)
+                    }
+                    val sAdapter = ArrayAdapter(applicationContext,android.R.layout.simple_spinner_dropdown_item,choice)
+                    spSpinner.adapter = sAdapter
+                }
+
+
             }
             //GET_check 닉네임 중복확인
             else if (state == 1) {

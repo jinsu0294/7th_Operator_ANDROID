@@ -8,6 +8,7 @@ class User : Application() {
     var memberid : String? = null
     var groupPid: Int? = null
 
+
     fun setmemberid(memberid : String){this.memberid = memberid}
     fun getmemberid(): String?{return memberid}
 
