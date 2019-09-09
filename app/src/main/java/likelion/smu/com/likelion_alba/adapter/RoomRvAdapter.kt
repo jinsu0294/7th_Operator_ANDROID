@@ -32,6 +32,7 @@ class RoomRvAdapter(val context: Context, val roomList:ArrayList<Room>): Recycle
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
+
         fun bind(room: Room, context: Context, index: Int){
             val store = itemView.findViewById<TextView>(R.id.tvUserStore)
             val nickname =  itemView.findViewById<TextView>(R.id.tvUserNick)
@@ -57,6 +58,7 @@ class RoomRvAdapter(val context: Context, val roomList:ArrayList<Room>): Recycle
 
         }
     }
+
 
 }
 
